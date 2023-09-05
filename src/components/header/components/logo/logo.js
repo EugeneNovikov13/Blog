@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Icon } from '../../../../components';
 
@@ -14,16 +15,16 @@ const SmallText = styled.div`
 `;
 
 export const LogoContainer = ({ className }) => (
-	<div className={className}>
+	<Link className={className} to="/">
 		<Icon id="fa-code" size="70px" margin="0 10px 0 0"/>
 		<div>
 			<LargeText>Блог</LargeText>
 			<SmallText>веб-разработчика</SmallText>
 		</div>
-	</div>
+	</Link>
 );
 
 export const Logo = styled(LogoContainer)`
 	display: flex;
-	margin-top: -14px;
+	margin-top: -21px;
 `;
