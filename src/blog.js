@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Routes, Route } from 'react-router-dom';
-import {Authorization} from './components/pages';
+import {Authorization} from './pages';
 import { Footer, Header } from './components';
 
 const AppColumn = styled.div`
