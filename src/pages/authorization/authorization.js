@@ -6,6 +6,8 @@ import { server } from '../../bff';
 import { useState } from 'react';
 import { Button, H2, Input } from '../../components';
 import styled from 'styled-components';
+import { setUser } from '../../actions';
+import { useDispatch } from 'react-redux';
 
 const authFromSchema = yup.object().shape({
 	login: yup.string()
@@ -51,13 +53,16 @@ const AuthorizationContainer = ({ className }) => {
 
 	const [serverError, setServerError] = useState(null);
 
+	const dispatch = useDispatch();
+
 	const onSubmit = ({ login, password }) => {
 		server.authorize(login, password).then(({ error, res }) => {
 			if (error) {
 				setServerError(`Ошибка запроса: ${error}`);
+				return;
 			}
 
-
+			dispatch(setUser(res));
 		});
 	};
 
@@ -72,15 +77,15 @@ const AuthorizationContainer = ({ className }) => {
 					type='text'
 					placeholder='Логин...'
 					{...register('login', {
-					onChange: () => setServerError(null),
-				})}
+						onChange: () => setServerError(null),
+					})}
 				/>
 				<Input
 					type='password'
 					placeholder='Пароль...'
 					{...register('password', {
-					onChange: () => setServerError(null),
-				})}
+						onChange: () => setServerError(null),
+					})}
 				/>
 				<Button type='submit' disabled={!!formError}>
 					Авторизоваться

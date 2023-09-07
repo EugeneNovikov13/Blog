@@ -15,8 +15,8 @@ const SmallText = styled.div`
 `;
 
 export const LogoContainer = ({ className }) => (
-	<Link className={className} to="/">
-		<Icon id="fa-code" size="70px" margin="0 10px 0 0"/>
+	<Link className={className} to='/'>
+		<Icon id='fa-code' size='70px' margin='0 10px 0 0' />
 		<div>
 			<LargeText>Блог</LargeText>
 			<SmallText>веб-разработчика</SmallText>
