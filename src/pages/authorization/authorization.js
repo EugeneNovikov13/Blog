@@ -60,9 +60,9 @@ const AuthorizationContainer = ({ className }) => {
 	const wasLogout = useSelector(selectAppWasLogout);
 
 	useEffect(() => {
-			if (wasLogout) {
-				reset();
-			}
+		if (wasLogout) {
+			reset();
+		}
 	}, [reset, wasLogout]);
 
 	const onSubmit = ({ login, password }) => {
@@ -72,7 +72,7 @@ const AuthorizationContainer = ({ className }) => {
 				return;
 			}
 
-			dispatch(LOGIN)
+			dispatch(LOGIN);
 			dispatch(setUser(res));
 		});
 	};
@@ -81,7 +81,7 @@ const AuthorizationContainer = ({ className }) => {
 	const errorMessage = formError || serverError;
 
 	if (!wasLogout) {
-		return <Navigate to="/" />;
+		return <Navigate to='/' />;
 	}
 
 	return (

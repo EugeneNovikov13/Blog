@@ -1,7 +1,7 @@
 import { ACTION_TYPE } from '../actions';
 
 const initialAppState = {
-	wasLogout: false,
+	wasLogout: true,
 };
 
 export const appReducer = (state = initialAppState, action) => {
