@@ -10,4 +10,4 @@ export const sessions = {
 	remove(hash) {
 		delete this.list[hash];
 	},
-}
+};
