@@ -1,1 +1,1 @@
-export const selectAppWasLogout = ({app}) => app.wasLogout;
+export const selectAppWasLogout = ({ app }) => app.wasLogout;

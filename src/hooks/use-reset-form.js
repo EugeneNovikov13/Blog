@@ -6,4 +6,4 @@ export const useResetForm = (reset, wasLogout) => {
 			reset();
 		}
 	}, [reset, wasLogout]);
-}
+};
