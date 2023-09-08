@@ -9,7 +9,13 @@ export const appReducer = (state = initialAppState, action) => {
 		case ACTION_TYPE.LOGOUT:
 			return {
 				...state,
-				wasLogout: !state.wasLogout,
+				wasLogout: true,
+			};
+
+		case ACTION_TYPE.LOGIN:
+			return {
+				...state,
+				wasLogout: false,
 			};
 		default:
 			return state;
