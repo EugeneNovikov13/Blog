@@ -1,4 +1,5 @@
 import { Icon } from '../../../../components';
+import { TableRow } from '../table-row/table-row';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 
@@ -12,7 +13,7 @@ const UserRowContainer = ({ className, login, registeredAt, roleId: userRoleId }
 
 	return (
 		<div className={className}>
-			<div className='user-data'>
+			<TableRow>
 				<div className='login-column'>{login}</div>
 				<div className='registered-at-column'>{registeredAt}</div>
 				<div className='role-column'>
@@ -23,13 +24,13 @@ const UserRowContainer = ({ className, login, registeredAt, roleId: userRoleId }
 					</select>
 					<Icon id='fa-trash-o'
 						  margin='0 0 0 10px'
-						// onClick={() => dispatch(/* TODO */)}
+						  onClick={() => dispatch(/* TODO */)}
 					/>
 				</div>
-			</div>
+			</TableRow>
 			<Icon id='fa-trash-o'
 				  margin='0 0 0 10px'
-				// onClick={() => dispatch(/*TODO*/)}
+				  onClick={() => dispatch(/*TODO*/)}
 			/>
 		</div>
 	);
