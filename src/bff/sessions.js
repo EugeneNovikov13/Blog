@@ -5,6 +5,7 @@ export const sessions = {
 
 		this.list[hash] = user;
 
+		//возвращает уникальный хэш сессии в виде строки
 		return hash;
 	},
 	remove(hash) {

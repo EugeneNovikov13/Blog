@@ -1,11 +1,11 @@
 {
 	"users": [
 		{
-			"id": "001",
 			"login": "eugene",
 			"password": "gfhjkm",
 			"registered_at": "2023-09-01",
-			"role_id": "0"
+			"role_id": 0,
+			"id": "001"
 		},
 		{
 			"login": "anton",
