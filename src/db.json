@@ -11,15 +11,8 @@
 			"login": "anton",
 			"password": "gfhjkm",
 			"registered_at": "2043-11-04 00:01",
-			"role_id": 2,
+			"role_id": 1,
 			"id": "aW9z5f5"
-		},
-		{
-			"login": "ivan",
-			"password": "gfhjkm",
-			"registered_at": "2053-07-05 20:08",
-			"role_id": 2,
-			"id": "cH9CfLO"
 		},
 		{
 			"login": "denis",
@@ -27,13 +20,6 @@
 			"registered_at": "2058-09-28 11:49",
 			"role_id": 2,
 			"id": "TlctS33"
-		},
-		{
-			"login": "lena",
-			"password": "gfhjkm",
-			"registered_at": "2051-07-16 07:38",
-			"role_id": 2,
-			"id": "Ph74IWS"
 		},
 		{
 			"login": "olga",
@@ -48,6 +34,20 @@
 			"registered_at": "2060-02-06 11:47",
 			"role_id": 2,
 			"id": "JN76_Lr"
+		},
+		{
+			"login": "artem",
+			"password": "gfhjkm",
+			"registered_at": "2056-12-05 12:36",
+			"role_id": 2,
+			"id": "gb5RohT"
+		},
+		{
+			"login": "oleg",
+			"password": "gfhjkm",
+			"registered_at": "2055-05-05 04:18",
+			"role_id": 2,
+			"id": "SWk3pTr"
 		}
 	],
 	"roles": [
@@ -60,11 +60,11 @@
 			"name": "Модератор"
 		},
 		{
-			"id": 3,
+			"id": 2,
 			"name": "Читатель"
 		},
 		{
-			"id": 4,
+			"id": 3,
 			"name": "Гость"
 		}
 	],

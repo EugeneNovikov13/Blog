@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { server } from '../../bff';
 import { Button, AuthFormError, H2, Input } from '../../components';
 import { useResetForm } from '../../hooks';
-import { LOGIN, setUser } from '../../actions';
+import { setUser } from '../../actions';
 import { selectAppWasLogout } from '../../selectors';
 import styled from 'styled-components';
 
@@ -59,7 +59,6 @@ const RegistrationContainer = ({ className }) => {
 				return;
 			}
 
-			dispatch(LOGIN);
 			dispatch(setUser(res));
 		});
 	};

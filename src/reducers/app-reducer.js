@@ -12,7 +12,7 @@ export const appReducer = (state = initialAppState, action) => {
 				wasLogout: true,
 			};
 
-		case ACTION_TYPE.LOGIN:
+		case ACTION_TYPE.SET_USER:
 			return {
 				...state,
 				wasLogout: false,
