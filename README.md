@@ -20,7 +20,7 @@
 1. Пользователи - users: id / login / password / registered_at / role_id
 2. Роли - roles: id / name
 3. Статьи - posts: id / title / image_url / content / published_at
-4. Комментарии - comments: id / author_id / post_id / content
+4. Комментарии - comments: id / author_id / post_id / content / published_at
 
 Схема состояния на BFF:
 

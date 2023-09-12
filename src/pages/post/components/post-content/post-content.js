@@ -62,4 +62,8 @@ export const PostContent = styled(PostContentContainer)`
 		position: relative;
 		top: -2px;
 	}
+
+	& .post-text {
+		font-size: 18px;
+	}
 `;

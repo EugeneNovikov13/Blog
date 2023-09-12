@@ -1,3 +1,4 @@
+export * from './add-post-comment';
 export * from './authorize';
 export * from './fetch-post';
 export * from './fetch-roles';

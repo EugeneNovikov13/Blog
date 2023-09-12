@@ -6,6 +6,7 @@ const initialPostState = {
 	imageUrl: '',
 	content: '',
 	publishedAt: '',
+	comments: [],
 };
 
 export const postReducer = (state = initialPostState, action) => {
