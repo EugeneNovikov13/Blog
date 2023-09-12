@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { server } from '../../bff';
-import { Button, AuthFormError, H2, Input } from '../../components';
+import { AuthFormError, Button, H2, Input } from '../../components';
 import { useResetForm } from '../../hooks';
 import { setUser } from '../../actions';
 import { selectAppWasLogout } from '../../selectors';
@@ -60,6 +60,7 @@ const RegistrationContainer = ({ className }) => {
 			}
 
 			dispatch(setUser(res));
+			sessionStorage.setItem('userData', JSON.stringify(res));
 		});
 	};
 

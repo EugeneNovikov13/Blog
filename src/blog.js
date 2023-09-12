@@ -1,7 +1,10 @@
 import styled from 'styled-components';
-import { Routes, Route } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { Authorization, Post, Registration, Users } from './pages';
 import { Footer, Header } from './components';
+import { useLayoutEffect } from 'react';
+import { setUser } from './actions';
+import { useDispatch } from 'react-redux';
 
 const AppColumn = styled.div`
 	display: flex;
@@ -18,6 +21,25 @@ const Page = styled.div`
 `;
 
 export const Blog = () => {
+	const dispatch = useDispatch();
+
+	//используем хук и sessionStorage, чтобы авторизация не терялась при перезагрузке страницы
+	useLayoutEffect(() => {
+		const currentUserDataJSON = sessionStorage.getItem('userData');
+
+		if (!currentUserDataJSON) {
+			return;
+		}
+
+		const currentUserData = JSON.parse(currentUserDataJSON);
+
+		//Устанавливаем пользователя, сохранённого в sessionStorage. Следим за тем, чтобы тип данных roleId был Number.
+		dispatch(setUser({
+			...currentUserData,
+			roleId: Number(currentUserData.roleId),
+		}));
+	}, [dispatch]);
+
 	return (
 		<AppColumn>
 			<Header />

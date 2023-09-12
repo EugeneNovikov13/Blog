@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { Icon, Button } from '../../../../components';
+import { Button, Icon } from '../../../../components';
 import { ROLE } from '../../../../constants';
 import { selectUserLogin, selectUserRole, selectUserSession } from '../../../../selectors';
 import { logout } from '../../../../actions';
@@ -26,6 +26,11 @@ const ControlPanelContainer = ({ className }) => {
 
 	const dispatch = useDispatch();
 
+	const onLogout = () => {
+		dispatch(logout(session));
+		sessionStorage.removeItem('userData');
+	};
+
 	return (
 		<div className={className}>
 			<RightAligned>
@@ -39,7 +44,7 @@ const ControlPanelContainer = ({ className }) => {
 						<Icon
 							id='fa-sign-out'
 							margin='0'
-							onClick={() => dispatch(logout(session))}
+							onClick={onLogout}
 						/>
 					</>}
 			</RightAligned>
