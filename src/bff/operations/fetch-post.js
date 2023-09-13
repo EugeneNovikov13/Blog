@@ -7,7 +7,6 @@ export const fetchPost = async (postId) => {
 
 	const users = await getUsers();
 
-	//не делать так в реальном проекте!!!
 	const commentsWithAuthor = comments.map((comment) => (
 		{
 			...comment,
