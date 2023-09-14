@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Route, Routes } from 'react-router-dom';
-import { Authorization, Post, Registration, Users } from './pages';
+import { Authorization, Main, Post, Registration, Users } from './pages';
 import { Footer, Header, Modal } from './components';
 import { useLayoutEffect } from 'react';
 import { setUser } from './actions';
@@ -45,7 +45,7 @@ export const Blog = () => {
 			<Header />
 			<Page>
 				<Routes>
-					<Route path='/' element={<div>Главная страница</div>}></Route>
+					<Route path='/' element={<Main />}></Route>
 					<Route path='/login' element={<Authorization />}></Route>
 					<Route path='/register' element={<Registration />}></Route>
 					<Route path='/users' element={<Users />}></Route>
