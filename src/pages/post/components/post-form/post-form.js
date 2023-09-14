@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useServerRequest } from '../../../../hooks';
@@ -13,13 +13,17 @@ const PostFormContainer = ({ className, post: { id, title, imageUrl, publishedAt
 	const requestServer = useServerRequest();
 	const navigate = useNavigate();
 
-	const imageRef = useRef(null);
-	const titleRef = useRef(null);
+	const [imageUrlValue, setImageUrlValue] = useState(imageUrl);
+	const [titleValue, setTitleValue] = useState(title);
 	const contentRef = useRef(null);
 
+	//обновляем состояния перед рендерингом компонента, чтобы инпуты возвращались пустыми
+	useLayoutEffect(() => {
+		setImageUrlValue(imageUrl);
+		setTitleValue(title);
+	}, [imageUrl, title]);
+
 	const onSave = () => {
-		const newImageUrl = imageRef.current.value;
-		const newTitle = titleRef.current.value;
 		const newContent = sanitizeContent(contentRef.current.innerHTML);
 
 		dispatch(
@@ -27,18 +31,30 @@ const PostFormContainer = ({ className, post: { id, title, imageUrl, publishedAt
 				requestServer,
 				{
 					id,
-					imageUrl: newImageUrl,
-					title: newTitle,
+					imageUrl: imageUrlValue,
+					title: titleValue,
 					content: newContent,
 				},
 			),
-		).then(() => navigate(`/post/${id}`));
+		).then(({ id }) => navigate(`/post/${id}`));
 	};
+
+	const onImageUrlValueChange = ({ target }) => setImageUrlValue(target.value);
+
+	const onTitleValueChange = ({ target }) => setTitleValue(target.value);
 
 	return (
 		<div className={className}>
-			<Input ref={imageRef} defaultValue={imageUrl} placeholder='Изображение...' />
-			<Input ref={titleRef} defaultValue={title} placeholder='Заголовок...' />
+			<Input
+				value={imageUrlValue}
+				placeholder='Изображение...'
+				onChange={onImageUrlValueChange}
+			/>
+			<Input
+				value={titleValue}
+				placeholder='Заголовок...'
+				onChange={onTitleValueChange}
+			/>
 			<SpecialPanel
 				id={id}
 				publishedAt={publishedAt}
@@ -47,13 +63,18 @@ const PostFormContainer = ({ className, post: { id, title, imageUrl, publishedAt
 					<Icon
 						id='fa-floppy-o'
 						size='21px'
-						margin='0 10px 0 0'
 						onClick={onSave}
 					/>
 				}
 			/>
-			<div ref={contentRef} contentEditable={true} suppressContentEditableWarning={true}
-				 className='post-text'>{content}</div>
+			{/*редактируемый элемент HTML*/}
+			<div ref={contentRef}
+				 contentEditable={true}
+				 suppressContentEditableWarning={true}
+				 className='post-text'
+			>
+				{content}
+			</div>
 		</div>
 	);
 };
@@ -65,6 +86,8 @@ export const PostForm = styled(PostFormContainer)`
 	}
 
 	& .post-text {
+		min-height: 80px;
+		border: 1px solid #000;
 		font-size: 18px;
 		white-space: pre-line;
 	}
