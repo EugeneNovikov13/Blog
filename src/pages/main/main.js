@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useServerRequest } from '../../hooks';
 import { Pagination, PostCard, Search } from './components';
 import { PAGINATION_LIMIT } from '../../constants';
@@ -22,8 +22,8 @@ const MainContainer = ({ className }) => {
 		);
 	}, [requestServer, page, shouldSearch]);
 
-	const startDelayedSearch = debounce(setShouldSearch, 2000);
-	// const startDelayedSearch = useMemo(() => debounce(setShouldSearch, 2000), []);
+	// const startDelayedSearch = debounce(setShouldSearch, 2000);
+	const startDelayedSearch = useMemo(() => debounce(setShouldSearch, 2000), []);
 
 	const onSearch = ({ target }) => {
 		setSearchPhrase(target.value);
