@@ -1,19 +1,5 @@
-import { H2 } from '../h2/h2';
-import styled from 'styled-components';
-
-const Div = styled.div`
-	display: flex;
-	align-items: center;
-	flex-direction: column;
-`;
+//импортируем напрямую, а не через индекс, так как компоненты находятся на одном уровне
+import { Error } from '../error/error';
 
 export const Content = ({ children, error }) =>
-	error ? (
-		<Div>
-			<H2>Ошибка</H2>
-			<div>{error}</div>
-		</Div>
-	) : (
-		children
-	);
-
+	error ? <Error error={error} /> : children;

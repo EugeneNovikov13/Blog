@@ -1,10 +1,11 @@
-import styled from 'styled-components';
-import { Route, Routes } from 'react-router-dom';
-import { Authorization, Main, Post, Registration, Users } from './pages';
-import { Footer, Header, Modal } from './components';
 import { useLayoutEffect } from 'react';
-import { setUser } from './actions';
+import { Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { Authorization, Main, Post, Registration, Users } from './pages';
+import { Error, Footer, Header, Modal } from './components';
+import { setUser } from './actions';
+import { ERROR } from './constants';
+import styled from 'styled-components';
 
 const AppColumn = styled.div`
 	display: flex;
@@ -55,7 +56,10 @@ export const Blog = () => {
 					<Route path="/post" element={<Post />}></Route>
 					<Route path="/post/:id" element={<Post />}></Route>
 					<Route path="/post/:id/edit" element={<Post />}></Route>
-					<Route path="*" element={<div>Ошибка</div>}></Route>
+					<Route
+						path="*"
+						element={<Error error={ERROR.PAGE_NOT_EXIST} />}
+					></Route>
 				</Routes>
 			</Page>
 			<Footer />
