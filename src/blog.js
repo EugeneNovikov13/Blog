@@ -10,6 +10,7 @@ const AppColumn = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	position: relative;
 	width: 1000px;
 	min-height: 100%;
 	margin: 0 auto;
@@ -34,10 +35,12 @@ export const Blog = () => {
 		const currentUserData = JSON.parse(currentUserDataJSON);
 
 		//Устанавливаем пользователя, сохранённого в sessionStorage. Следим за тем, чтобы тип данных roleId был Number.
-		dispatch(setUser({
-			...currentUserData,
-			roleId: Number(currentUserData.roleId),
-		}));
+		dispatch(
+			setUser({
+				...currentUserData,
+				roleId: Number(currentUserData.roleId),
+			}),
+		);
 	}, [dispatch]);
 
 	return (
@@ -45,14 +48,14 @@ export const Blog = () => {
 			<Header />
 			<Page>
 				<Routes>
-					<Route path='/' element={<Main />}></Route>
-					<Route path='/login' element={<Authorization />}></Route>
-					<Route path='/register' element={<Registration />}></Route>
-					<Route path='/users' element={<Users />}></Route>
-					<Route path='/post' element={<Post />}></Route>
-					<Route path='/post/:id' element={<Post />}></Route>
-					<Route path='/post/:id/edit' element={<Post />}></Route>
-					<Route path='*' element={<div>Ошибка</div>}></Route>
+					<Route path="/" element={<Main />}></Route>
+					<Route path="/login" element={<Authorization />}></Route>
+					<Route path="/register" element={<Registration />}></Route>
+					<Route path="/users" element={<Users />}></Route>
+					<Route path="/post" element={<Post />}></Route>
+					<Route path="/post/:id" element={<Post />}></Route>
+					<Route path="/post/:id/edit" element={<Post />}></Route>
+					<Route path="*" element={<div>Ошибка</div>}></Route>
 				</Routes>
 			</Page>
 			<Footer />
