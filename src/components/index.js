@@ -1,6 +1,6 @@
 export * from './auth-error/auth-error';
 export * from './button/button';
-export * from './content/content';
+export * from './private-content/private-content';
 export * from './error/error';
 export * from './footer/footer';
 export * from './h2/h2';
