@@ -1,5 +1,6 @@
-import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { Button } from '../../../../components';
+import styled from 'styled-components';
 
 const PaginationContainer = ({ className, page, lastPage, setPage }) => {
 	return (
@@ -10,7 +11,7 @@ const PaginationContainer = ({ className, page, lastPage, setPage }) => {
 			<Button disabled={page === 1} onClick={() => setPage(page - 1)}>
 				Предыдущая
 			</Button>
-			<div className="current-page">Страница: {page}</div>
+			<div className='current-page'>Страница: {page}</div>
 			<Button disabled={page === lastPage} onClick={() => setPage(page + 1)}>
 				Следующая
 			</Button>
@@ -41,3 +42,9 @@ export const Pagination = styled(PaginationContainer)`
 		font-weight: 500;
 	}
 `;
+
+Pagination.propTypes = {
+	page: PropTypes.number.isRequired,
+	lastPage: PropTypes.number.isRequired,
+	setPage: PropTypes.func.isRequired,
+};
