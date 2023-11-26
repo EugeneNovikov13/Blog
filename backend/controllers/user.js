@@ -58,7 +58,7 @@ function deleteUser(id) {
 // edit (roles)
 
 function updateUser(id, userData) {
-	//параметр returnDocument: 'after' добавляется для возвращения новых данных, а не тех что былт до обновления
+	//параметр returnDocument: 'after' добавляется для возвращения новых данных, а не тех что были до обновления
 	return User.findByIdAndUpdate(id, userData, { returnDocument: 'after' });
 }
 
