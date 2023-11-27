@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Icon } from '../../../../components';
+import { Button, Icon } from '../../../index';
 import { ROLE } from '../../../../constants';
 import { selectUserLogin, selectUserRole, selectUserSession } from '../../../../selectors';
 import { logout } from '../../../../actions';

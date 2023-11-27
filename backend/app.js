@@ -14,6 +14,10 @@ const ROLES = require('./constants/roles');
 const port = 3001;
 const app = express();
 
+//"учим" бекэнд раздавать статические файлы из сборки фронт-энда - ВАРИАНТ ДЛЯ ПРОДАКШЭНА
+//чтобы сборка появилась нужно не забыть запустить во фронт-энде npm run build
+app.use(express.static('../frontend/build'));
+
 //подключаем взаимодействие с куки
 app.use(cookieParser());
 //подключаем взаимодействие с форматом json
