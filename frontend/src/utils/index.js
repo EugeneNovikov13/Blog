@@ -1,1 +1,2 @@
-export * from './check-access/check-access';
+export * from './check-access';
+export * from './request';
