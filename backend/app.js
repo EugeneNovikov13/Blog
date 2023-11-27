@@ -128,7 +128,7 @@ app.get('/users/roles', hasRole([ROLES.ADMIN]), (req, res) => {
 });
 
 app.patch('/users/:id', hasRole([ROLES.ADMIN]), async (req, res) => {
-	await updateUser(req.params.id, {
+	const newUser = await updateUser(req.params.id, {
 		role: req.body.roleId,
 	});
 

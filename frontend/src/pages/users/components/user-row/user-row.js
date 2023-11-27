@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import { Icon } from '../../../../components';
 import { TableRow } from '../table-row/table-row';
 import { useState } from 'react';
-import { useServerRequest } from '../../../../hooks';
 import { PROP_TYPE } from '../../../../constants';
+import { request } from '../../../../utils';
 import styled from 'styled-components';
 
 const UserRowContainer = ({
@@ -18,14 +18,12 @@ const UserRowContainer = ({
 	const [initialRoleId, setInitialRoleId] = useState(userRoleId);
 	const [selectedRoleId, setSelectedRoleId] = useState(userRoleId);
 
-	const requestServer = useServerRequest();
-
 	const onRoleChange = ({ target }) => {
 		setSelectedRoleId(Number(target.value));
 	};
 
 	const onRoleSave = (userId, newUserRoleId) => {
-		requestServer('updateUserRole', userId, newUserRoleId)
+		request(`users/${userId}`,'PATCH', { roleId: newUserRoleId })
 			.then(() => setInitialRoleId(newUserRoleId));
 	};
 
