@@ -1,23 +1,20 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useServerRequest } from '../../../../hooks';
 import PropTypes from 'prop-types';
 import { Icon } from '../../../../components';
 import { Comment } from './components';
 import { addCommentAsync } from '../../../../actions';
-import { selectUserId, selectUserRole } from '../../../../selectors';
+import { selectUserRole } from '../../../../selectors';
 import { PROP_TYPE, ROLE } from '../../../../constants';
 import styled from 'styled-components';
 
 const CommentsContainer = ({ className, comments, postId }) => {
 	const [newComment, setNewComment] = useState('');
-	const userId = useSelector(selectUserId);
 	const dispatch = useDispatch();
-	const requestServer = useServerRequest();
 	const userRole = useSelector(selectUserRole);
 
-	const onNewCommentAdd = (userId, postId, content) => {
-		dispatch(addCommentAsync(requestServer, userId, postId, content));
+	const onNewCommentAdd = (postId, content) => {
+		dispatch(addCommentAsync(postId, content));
 		setNewComment('');
 	};
 
@@ -37,7 +34,7 @@ const CommentsContainer = ({ className, comments, postId }) => {
 						id='fa-send-o'
 						margin='0 0 0 10px'
 						size='18px'
-						onClick={() => onNewCommentAdd(userId, postId, newComment)}
+						onClick={() => onNewCommentAdd(postId, newComment)}
 					/>
 				</div>}
 			<div className='comments'>

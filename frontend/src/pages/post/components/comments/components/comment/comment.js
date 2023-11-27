@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useServerRequest } from '../../../../../../hooks';
 import PropTypes from 'prop-types';
 import { Icon } from '../../../../../../components';
 import { checkAccess } from '../../../../../../utils';
@@ -10,7 +9,6 @@ import styled from 'styled-components';
 
 const CommentContainer = ({ className, postId, id, author, content, publishedAt }) => {
 	const dispatch = useDispatch();
-	const requestServer = useServerRequest();
 	const userRole = useSelector(selectUserRole);
 
 	const onCommentRemove = (id) => {
@@ -18,7 +16,7 @@ const CommentContainer = ({ className, postId, id, author, content, publishedAt 
 			openModal({
 				text: 'Удалить комментарий?',
 				onConfirm: () => {
-					dispatch(removeCommentAsync(requestServer, postId, id));
+					dispatch(removeCommentAsync(postId, id));
 					dispatch(CLOSE_MODAL);
 				},
 				onCancel: () => dispatch(CLOSE_MODAL),
@@ -91,7 +89,7 @@ export const Comment = styled(CommentContainer)`
 
 Comment.propTypes = {
 	postId: PropTypes.string.isRequired,
-	id: PropTypes.number.isRequired,
+	id: PropTypes.string.isRequired,
 	author: PropTypes.string.isRequired,
 	content: PropTypes.string.isRequired,
 	publishedAt: PropTypes.string.isRequired,
