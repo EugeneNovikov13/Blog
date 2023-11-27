@@ -4,12 +4,12 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { server } from '../../bff';
 import { AuthFormError, Button, H2, Input } from '../../components';
 import { useResetForm } from '../../hooks';
 import { setUser } from '../../actions';
 import { selectAppWasLogout } from '../../selectors';
 import styled from 'styled-components';
+import { request } from '../../utils';
 
 const authFormSchema = yup.object().shape({
 	login: yup.string()
@@ -56,14 +56,14 @@ const AuthorizationContainer = ({ className }) => {
 	useResetForm(reset, wasLogout);
 
 	const onSubmit = ({ login, password }) => {
-		server.authorize(login, password).then(({ error, res }) => {
+		request('/login', 'POST',{ login, password }).then(({ error, user }) => {
 			if (error) {
 				setServerError(`Ошибка запроса: ${error}`);
 				return;
 			}
 
-			dispatch(setUser(res));
-			sessionStorage.setItem('userData', JSON.stringify(res));
+			dispatch(setUser(user));
+			sessionStorage.setItem('userData', JSON.stringify(user));
 		});
 	};
 

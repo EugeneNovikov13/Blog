@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useServerRequest } from '../../hooks';
 import { Pagination, PostCard, Search } from './components';
 import { PAGINATION_LIMIT } from '../../constants';
 import styled from 'styled-components';
-import { debounce, getLastPageFromLinks } from './utils';
+import { debounce } from './utils';
+import { request } from '../../utils';
 
 const MainContainer = ({ className }) => {
 	const [posts, setPosts] = useState([]);
@@ -11,16 +11,15 @@ const MainContainer = ({ className }) => {
 	const [lastPage, setLastPage] = useState(1);
 	const [searchPhrase, setSearchPhrase] = useState('');
 	const [shouldSearch, setShouldSearch] = useState(false);
-	const requestServer = useServerRequest();
 
 	useEffect(() => {
-		requestServer('fetchPosts', searchPhrase, page, PAGINATION_LIMIT).then(
-			({ res: { posts, links } }) => {
+		request(`/posts?search=${searchPhrase}&page=${page}&limit=${PAGINATION_LIMIT}`).then(
+			({ data: { posts, lastPage } }) => {
 				setPosts(posts);
-				setLastPage(getLastPageFromLinks(links));
+				setLastPage(lastPage);
 			},
 		);
-	}, [requestServer, page, shouldSearch]);
+	}, [page, shouldSearch]);
 
 	const startDelayedSearch = debounce(setShouldSearch, 2000);
 	// const startDelayedSearch = useMemo(() => debounce(setShouldSearch, 2000), []);
@@ -37,14 +36,14 @@ const MainContainer = ({ className }) => {
 				{posts.length ? (
 					<div className="post-list">
 						{posts.map(
-							({ id, title, imageUrl, publishedAt, commentsCount }) => (
+							({ id, title, imageUrl, publishedAt, comments }) => (
 								<PostCard
 									key={id}
 									id={id}
 									title={title}
 									imageUrl={imageUrl}
 									publishedAt={publishedAt}
-									commentsCount={commentsCount}
+									commentsCount={comments.length}
 								/>
 							),
 						)}
