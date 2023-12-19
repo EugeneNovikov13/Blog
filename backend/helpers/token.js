@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 
 //секрет для jwt
-const sign = 'testtest';
+const sign = process.env.JWT_SECRET;
 
 module.exports = {
 	//создаётся уникальный токен для идентификации пользователя

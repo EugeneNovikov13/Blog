@@ -3,6 +3,13 @@ const User = require('../models/User');
 
 //после выполнения данной функции в объекте запроса всегда присутствует пользователь, осуществивший запрос
 module.exports = async function(req, res, next) {
+	const token = req.cookies.token;
+
+	if (!token) {
+		next();
+		return;
+	}
+
 	//функция расшифровывает и возвращает токен из куки в запросе
 	const tokenData = verify(req.cookies.token);
 
