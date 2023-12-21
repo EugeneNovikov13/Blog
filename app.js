@@ -143,11 +143,11 @@ app.delete('/users/:id', hasRole([ROLES.ADMIN]), async (req, res) => {
 });
 
 app.get('/*', (req, res) => {
-	res.sendFile(join(__dirname, '../frontend/build/index.html'));
+	res.sendFile(join(__dirname, 'frontend/build/index.html'));
 });
 
 mongoose.connect(
-	"mongodb+srv://NovikovEugene:gfhjkm13@educationdb.nioilpj.mongodb.net/blog?retryWrites=true&w=majority"
+	process.env.DB_CONNECTION_STRING
 ).then(() => {
 	app.listen(port, () => {
 		console.log(`Server started on port ${port}`);
