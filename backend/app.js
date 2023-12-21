@@ -147,7 +147,7 @@ app.get('/*', (req, res) => {
 });
 
 mongoose.connect(
-	process.env.DB_CONNECTION_STRING,
+	"mongodb+srv://NovikovEugene:gfhjkm13@educationdb.nioilpj.mongodb.net/blog?retryWrites=true&w=majority"
 ).then(() => {
 	app.listen(port, () => {
 		console.log(`Server started on port ${port}`);
