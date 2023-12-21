@@ -19,6 +19,7 @@ const MainContainer = ({ className }) => {
 				setLastPage(lastPage);
 			},
 		);
+	// eslint-disable-next-line
 	}, [page, shouldSearch]);
 
 	const startDelayedSearch = debounce(setShouldSearch, 2000);
